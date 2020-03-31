@@ -1,0 +1,1095 @@
+/*
+  Written & Coded By SuDeep Jaiswal
+  Name: MusicPlayer v0.2
+  Date: March 30, 2020
+  Song Poster Credits goes to Amazon Prime Music
+  All the songs are teken from YouTube
+  Please ignore the Bugs & Enjoy Music
+  #StayAtHome
+  #BeSafe
+  #BeHappy
+  #BeProductive
+  ❌ Dont Copy the Code Without my Permission
+
+  New Update:
+      Working seekbar
+      Custom Files
+       Working Visualizer
+*/
+
+body{
+
+  margin: 0;
+
+  padding: 0;
+
+  font-family: 'Roboto', sans-serif;
+
+  overflow: hidden;
+
+   user-select: none;
+
+}
+
+body,html{
+
+  scroll-behavior: smooth;
+
+}
+
+.loader{
+
+  position: fixed;
+
+  display: flex;
+
+  background: linear-gradient(to top, #de6262, #ffb88c);
+
+  transition: 600ms ease-in;
+
+}
+
+.enter{
+
+  position: absolute;
+
+  top: 70%;
+
+  left: 50%;
+
+  transform: translate(-50%,-50%);
+
+  font-size: 4vh;
+
+  color: transparent;
+
+  animation: enter 1200ms linear infinite;
+
+}
+
+@keyframes enter {
+
+  100%{
+
+    color: #00151f;
+
+  }
+
+}
+
+#ghost{
+
+  animation: 3s ghost linear infinite;
+
+}
+
+@keyframes ghost {
+
+  25%{
+
+    transform: translateY(-1.3vh);
+
+  }
+
+  75%{
+
+    transform: translateY(1.3vh);
+
+  }
+
+}
+
+.btm{
+
+  position: absolute;
+
+  bottom: 3vh;
+
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  font-size: 1.5vh;
+
+  color: #494949;
+
+  text-align: center;
+
+}
+
+.btm .fa{
+
+    animation:beat 1500ms linear infinite;
+
+    color: #e31b23;
+
+}
+
+@keyframes beat{
+
+    20%{
+
+        transform:scale(1.1);
+
+    }
+
+    40%{
+
+        transform:scale(0.9);
+
+    }
+
+    60%{
+
+        transform:scale(1.1);
+
+    }
+
+    100%{
+
+        transform:scale(1);
+
+    }
+
+}
+
+.container{
+
+  width: 100vw;
+
+  height: 100vh;
+
+  display: none;
+
+  justify-content: center;
+
+  align-items: center;
+
+  z-index: 99;
+
+  background-image: linear-gradient(to bottom, #2b2b52, #218f76);
+
+  position: fixed;
+
+  color:beige;
+
+}
+
+.front{
+
+  width: 100%;
+
+  height: 100%;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  flex-direction: column;
+
+  transition: 600ms ease-in;
+
+}
+
+.headBox{
+
+  width: 100%;
+
+  height: 10%;
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+}
+
+.headLeft, .headRight{
+
+  margin: 0 4vh;
+
+  width: 6vh;
+
+  height: 6vh;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  font-size: 4vh;
+
+  font-weight: bolder;
+
+  transition: 0.5s ease-out;
+
+}
+
+.posterBox{
+
+  width: 100%;
+
+  height: 45%;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+}
+
+.posterBg{
+
+  width: 80%;
+
+  height: 100%;
+
+  transform: translateX(-65%);
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+}
+
+.poster{
+
+  width: 45vh;
+
+  height: 45vh;
+
+  border-radius: 50%;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  transition: 600ms ease-in;
+
+  animation-fill-mode: forwards;
+
+}
+
+.poster img{
+
+  width: 100%;
+
+  height: 100%;
+
+  border-radius: 50%;
+
+  background-size: 100%;
+
+  transition: 600ms ease-in;
+
+}
+
+#asdf{
+
+  background: #000;
+
+  width: 8vh;
+
+  height: 8vh;
+
+  border-radius: 50%;
+
+  position: absolute;
+
+}
+
+@keyframes rotation {
+
+  100%{
+
+    transform: rotate(360deg);
+
+  }
+
+}
+
+.detailsBox{
+
+  width: 100%;
+
+  height: 15%;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  flex-direction: column;
+
+}
+
+.songName{
+
+  font-weight: bolder;
+
+  font-size: 3.5vh;
+
+  transition: 500ms ease-in;
+
+}
+
+.singer{
+
+  font-size: 2.5vh;
+
+  transition: 500ms ease-in;
+
+}
+
+.controlBox{
+
+  width: 100%;
+
+  height: 30%;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  flex-direction: column;
+
+}
+
+.control{
+
+  width: 70%;
+
+  height: 45%;
+
+  display: flex;
+
+  justify-content: space-around;
+
+  align-items: center;
+
+  font-weight: bolder;
+
+}
+
+.next, .play, .previous{
+
+  width: 30%;
+
+  height: 100%;
+
+  display: flex;
+
+  justify-content: space-around;
+
+  align-items: center;
+
+  font-size: 4vh;
+
+  transition: 600ms ease-in;
+
+}
+
+.play{
+
+  font-size: 5.5vh;
+
+  width: 9vh;
+
+  height: 9vh;
+
+  border-radius: 50%;
+
+  border: 0.5vh solid beige;
+
+}
+
+.slider{
+
+  width: 100%;
+
+  height: 25%;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+}
+
+.stick{
+
+  background: beige;
+
+  width: 80%;
+
+  height: 10%;
+
+  border-radius: 5%;
+
+  display: flex;
+
+  justify-content: flex-start;
+
+  align-items: center;
+
+}
+
+
+/* ! LIL MODIFICATION */
+.stick{
+  position: relative;
+}
+
+.ball{
+  position: absolute;
+
+  width: 3.5vh;
+
+  transform: translate(-50%,0%);
+
+  height: 3.5vh;
+
+  background: beige;
+
+  border-radius: 50%;
+
+  /* transition: 1000ms ease-in; */
+
+  /* animation: ball 250s linear forwards; */
+
+}
+/*
+@keyframes ball {
+
+  100%{
+
+    transform: translate(75vw,0%);
+
+  }
+
+} */
+
+
+
+.extraControl{
+
+  width: 100%;
+
+  height: 30%;
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+}
+
+.suffle, .share, .heart, .sound{
+
+  margin: 0 2vh;
+
+  font-size: 4vh;
+
+  width: 7vh;
+
+  height: 7vh;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  transition: 400ms ease-in;
+
+  border-radius: 50%;
+
+}
+
+.navBarLeft{
+
+  position: absolute;
+
+  top: 0;
+
+  left: 0;
+
+  width: 70%;
+
+  height: 100%;
+
+  background: aliceblue;
+
+  transition: 600ms ease-in;
+
+  transform: translateX(-100%);
+
+  display: flex;
+
+  justify-content: flex-start;
+
+  align-items: flex-start;
+
+  color: #494949;
+
+  z-index: 99;
+
+}
+
+#slideCloseLeft{
+
+  position: absolute;
+
+  font-weight: bolder;
+
+  right: 2vh;
+
+  top: 2vh;
+
+  font-size: 6vh;
+
+  transition: 0.5s ease-out;
+
+}
+
+.navLeftBox{
+
+  width: auto;
+
+  height: auto;
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: flex-start;
+
+  flex-direction: column;
+
+  margin: 8vh 0 0 5vh;
+
+  color: #494949;
+
+}
+
+.navLeftBoxList{
+
+  margin: 3vh 0;
+
+  font-weight: bolder;
+
+  display: flex;
+
+  align-items: center;
+
+  flex-direction: row;
+
+  font-size: 2vh;
+
+}
+
+.navLeftBoxList .fa{
+
+  margin-right: 2vh;
+
+  font-size: 4vh;
+
+}
+
+.copyright{
+
+  position: absolute;
+
+  bottom: 3vh;
+
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  font-size: 1.5vh;
+
+  color: #494949;
+
+  text-align: center;
+
+}
+
+.copyright .fa{
+
+    animation:beat 1500ms linear infinite;
+
+    color: #e31b23;
+
+}
+
+@keyframes beat{
+
+    20%{
+
+        transform:scale(1.1);
+
+    }
+
+    40%{
+
+        transform:scale(0.9);
+
+    }
+
+    60%{
+
+        transform:scale(1.1);
+
+    }
+
+    100%{
+
+        transform:scale(1);
+
+    }
+
+}
+
+.navBarRight{
+
+  position: absolute;
+
+  top: 0;
+
+  right: 0;
+
+  width: 0%;
+
+  height: 100%;
+
+  background: aliceblue;
+
+  transition: 600ms ease-in;
+
+  /* transform: translateX(100%); */
+
+  display: flex;
+
+  justify-content: flex-start;
+
+  align-items: flex-start;
+
+  z-index: 99;
+
+}
+
+#slideCloseRight{
+
+  position: absolute;
+
+  font-weight: bolder;
+
+  color: #494949;
+
+  left: 2vh;
+
+  top: 2vh;
+
+  font-size: 6vh;
+
+  transition: 0.5s ease-out;
+
+}
+
+.navRightBox{
+
+  width: 100%;
+
+  height: auto;
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: flex-start;
+
+  flex-direction: column;
+
+  margin: 8vh 0 0 5vh;
+
+  color: #494949;
+
+}
+
+.navRightBoxList{
+
+  margin: 1vh 0;
+
+  width: 100%;
+
+  padding: 2vh 0 2vh 1vh;
+
+  transition: 200ms ease-in;
+
+  font-size: 2vh;
+
+
+
+}
+
+.navRightBoxList:hover{
+
+  background: rgba(0,0,0,0.3);
+
+  transform: scale(1.05);
+
+  font-weight: bolder;
+
+}
+
+.tempText{
+
+  position: absolute;
+
+  bottom: 3vh;
+
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  font-size: 1.5vh;
+
+  color: #494949;
+
+  text-align: center;
+
+  display: none;
+
+}
+
+.tempText .fa{
+
+    animation:beat 1500ms linear infinite;
+
+    color: #e31b23;
+
+}
+
+.navBarDown{
+
+  position: absolute;
+
+  bottom: 0;
+
+  left: 0;
+
+  width: 100%;
+
+  height: 0%;
+
+  background: aliceblue;
+
+  transition: 600ms ease-in;
+
+  border-top-right-radius: 5%;
+
+  border-top-left-radius: 5%;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  /* transform: translateY(-100%); */
+
+}
+
+#slideCloseDown{
+
+  position: absolute;
+
+  font-weight: bolder;
+
+  color: #494949;
+
+  left: 2vh;
+
+  top: 2vh;
+
+  font-size: 4vh;
+
+  transition: 0.5s ease-out;
+
+}
+
+.shareWrapper{
+
+  width: 80%;
+
+  height: 80%;
+
+  display: flex;
+
+  justify-content: space-around;
+
+  align-items: center;
+
+  color: #494949;
+
+}
+
+.shareList{
+
+  width: 20%;
+
+  height: 50%;
+
+  border-radius: 50%;
+
+  justify-content: center;
+
+  align-items: center;
+
+  flex-direction: column;
+
+  font-size: 7vh;
+
+  text-align: center;
+
+}
+
+.shareList span{
+
+  font-size: 2vh;
+
+  text-align: center;
+
+  width: 100%;
+
+}
+
+.noti{
+
+  position: absolute;
+
+  top: 2vh;
+
+  left: 50%;
+
+  transform: translate(-50%,-150%);
+
+  background: aliceblue;
+
+  color: #2d2d2d;
+
+  width: auto;
+
+  height: auto;
+
+  padding: 2vh;
+
+  border-radius: 1em;
+
+}
+
+@keyframes noti {
+
+  30%{
+
+    transform: translate(-50%,0%);
+
+  }
+
+  70%{
+
+    transform: translate(-50%,0%);
+
+  }
+
+}
+
+.bars{
+
+  position: absolute;
+
+  top: 18%;
+
+  right: 0;
+
+  width: 30%;
+
+  height: 25%;
+
+  /* background: red; */
+
+  display: flex;
+
+  align-items: center;
+
+  flex-direction: column;
+
+  justify-content: space-between;
+
+  transform: translateX(60%);
+
+  opacity: 0;
+
+  transition: 100ms ease-out;
+
+}
+
+
+/* ! MODIFICATIONS */
+.bars span{
+
+  width: 100%;
+
+  height: 2%;
+
+  background: #234;
+
+  border-radius: 40%;
+
+  /* animation: bar 800ms linear infinite; */
+
+}
+/*
+.bars span:nth-child(1n+3){
+
+  animation-delay: 150ms;
+
+}
+
+.bars span:nth-child(1n+4){
+
+  animation-delay: 100ms;
+
+}
+
+.bars span:nth-child(1n+6){
+
+  animation-delay: 200ms;
+
+}
+
+.bars span:nth-child(1n+7){
+
+  animation-delay: 120ms;
+
+}
+
+.bars span:nth-child(1n+8){
+
+  animation-delay: 190ms;
+
+}
+
+.bars span:nth-child(1n+9){
+
+  animation-delay: 210ms;
+
+}
+
+.bars span:nth-child(1n+10){
+
+  animation-delay: 260ms;
+
+}
+
+.bars span:nth-child(1n+11){
+
+  animation-delay: 310ms;
+
+}
+
+.bars span:nth-child(1n+12){
+
+  animation-delay: 10ms;
+
+}
+
+.bars span:nth-child(1n+13){
+
+  animation-delay: 330ms;
+
+}
+
+.bars span:nth-child(1n+14){
+
+  animation-delay: 400ms;
+
+}
+
+.bars span:nth-child(1n+15){
+
+  animation-delay: -100ms;
+
+}
+
+.bars span:nth-child(1n+16){
+
+  animation-delay: -50ms;
+
+}
+
+.bars span:nth-child(1n+17){
+
+  animation-delay: -200ms;
+
+}
+
+.bars span:nth-child(1n+18){
+
+  animation-delay: -500ms;
+
+} */
+
+@keyframes bar {
+
+  20%{
+
+    transform: translate(-50%,0);
+
+  }
+
+  35%{
+
+    transform: translate(-20%,0);
+
+  }
+
+  50%{
+
+    transform: translate(20%,0);
+
+  }
+
+  70%{
+
+    transform: translate(-50%,0);
+
+  }
+
+  95%{
+
+    transform: translate(50%,0);
+
+  }
+
+  100%{
+
+    transform: translate(-40%,0);
+
+  }
+
+}

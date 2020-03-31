@@ -1,0 +1,1369 @@
+<!--
+    Written & Coded By SuDeep Jaiswal
+    Name: MusicPlayer v0.2
+    Date: March 30, 2020
+    Song Poster Credits goes to Amazon Prime Music
+    All the songs are teken from YouTube
+    Please ignore the Bugs & Enjoy Music
+    #StayAtHome
+    #BeSafe
+    #BeHappy
+    #BeProductive
+    ❌ Dont Copy the Code Without my Permission
+
+    New Update:
+        Working seekbar
+        Custom Files
+         Working Visualizer
+-->
+
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+
+<head>
+
+  <meta charset="utf-8">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
+    <link rel="stylesheet" href="stylesheet.css">
+
+
+  <title>MusicPlayer v0.2</title>
+
+</head>
+
+<body>
+
+  <div class="loader" id="loader">
+
+    <div class="enter" id="enter" onclick="enterFunc()">
+
+      Loading...
+
+    </div>
+
+    <div class="btm" id="btm">
+
+      Made With <i class="fa fa-heart"></i><br>By SuDeep Jaiswal<sup>&copy;</sup>
+
+    </div>
+
+    <svg width="100vw" height="100vh" viewBox="0 0 210 297" onclick="enterFunc()">
+
+      <defs id="defs2">
+
+        <filter style="color-interpolation-filters:sRGB" id="filter886" x="-0.036" width="1.072" y="-0.036"
+          height="1.072">
+
+          <feGaussianBlur stdDeviation="0.09" id="feGaussianBlur888" />
+
+        </filter>
+
+        <filter style="color-interpolation-filters:sRGB" id="filter898" x="-0.036" width="1.072" y="-0.036"
+          height="1.072">
+
+          <feGaussianBlur stdDeviation="0.09" id="feGaussianBlur900" />
+
+        </filter>
+
+        <filter style="color-interpolation-filters:sRGB" id="filter950" x="-0.040664225" width="1.0813285"
+          y="-0.31385966" height="1.6277193">
+
+          <feGaussianBlur stdDeviation="0.85859762" id="feGaussianBlur952" />
+
+        </filter>
+
+      </defs>
+
+      <g id="layer1">
+
+        <g id="ghost_shape">
+
+          <g id="ghost">
+
+            <path
+              style="fill:#f3eddd;fill-opacity:1;stroke:#f3eddd;stroke-width:12.30000019;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+              d="m 104.01892,114.62654 c -8.480671,0 -15.308128,6.82747 -15.308128,15.30812 v 48.98615 c 0.207616,-0.18747 0.417129,-0.36372 0.619599,-0.58549 0.62425,-0.68378 1.228476,-1.5032 1.837616,-2.28772 0.425532,-0.8185 0.843055,-1.51158 1.252635,-2.08876 0.40958,-0.57717 0.810892,-1.03847 1.204579,-1.39216 0.393684,-0.35369 0.779701,-0.5997 1.157552,-0.74776 0.188923,-0.074 0.375711,-0.12389 0.560689,-0.14986 0.184976,-0.026 0.367766,-0.0281 0.548802,-0.008 0.362071,0.0397 0.716634,0.16861 1.062984,0.37827 0.346353,0.20966 0.684753,0.49971 1.015442,0.86145 0.330692,0.36174 0.65333,0.79542 0.968417,1.29139 0.315089,0.49598 0.622366,1.05473 0.921906,1.66708 0.531987,1.02031 1.024157,1.81893 1.482087,2.4319 0.22896,0.30648 0.44913,0.56662 0.66198,0.78445 0.21285,0.21782 0.41818,0.39379 0.6165,0.53174 0.19833,0.13796 0.38977,0.23803 0.57517,0.3049 0.18539,0.0669 0.36491,0.10034 0.53899,0.1049 0.17406,0.005 0.3426,-0.0198 0.50694,-0.0687 0.16434,-0.049 0.32439,-0.12283 0.48059,-0.21652 0.31241,-0.18739 0.61024,-0.45531 0.89969,-0.76895 0.28946,-0.31364 0.57028,-0.6727 0.84956,-1.04231 0.27928,-0.36961 0.55683,-0.74954 0.83871,-1.10485 0.28188,-0.3553 0.56833,-0.68579 0.86558,-0.95653 0.63183,-0.9853 1.19643,-1.74684 1.70532,-2.32233 0.25445,-0.28775 0.49495,-0.52903 0.72296,-0.72864 0.228,-0.19962 0.44359,-0.3575 0.64802,-0.47852 0.20443,-0.12103 0.39764,-0.20537 0.58136,-0.25735 0.18371,-0.052 0.35761,-0.0716 0.52348,-0.0641 0.16587,0.008 0.32351,0.0423 0.47439,0.0997 0.15088,0.0575 0.29532,0.13777 0.43408,0.23565 0.27752,0.19575 0.53359,0.46263 0.7798,0.76274 0.24621,0.30012 0.48256,0.63307 0.72037,0.96118 0.23781,0.32812 0.47684,0.65145 0.72915,0.93121 0.25232,0.27976 0.51798,0.51624 0.80771,0.67128 0.28597,0.59149 0.56094,1.11471 0.82579,1.57561 0.26484,0.4609 0.51922,0.85913 0.76481,1.20096 0.24558,0.34184 0.48236,0.62717 0.71055,0.86145 0.22818,0.23428 0.44777,0.41779 0.66042,0.55604 0.0213,0.0139 0.0408,0.0154 0.062,0.0284 v -49.95767 c 0,-8.48065 -6.82745,-15.30812 -15.30811,-15.30812 z"
+              id="body" />
+
+            <g id="face">
+
+              <g id="eyes">
+
+                <circle
+                  style="fill:#1a1a1a;fill-opacity:1;stroke:none;stroke-width:4.54562664;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+                  id="eye2" cx="96.095535" cy="136.19495" r="3" />
+
+                <circle cy="136.19495" cx="113.02888" id="eye1"
+                  style="fill:#1a1a1a;fill-opacity:1;stroke:none;stroke-width:4.54562664;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+                  r="3" />
+
+              </g>
+
+              <path
+                d="m 111.64573,143.6173 a 7.5595236,6.4621954 0 0 1 -3.43612,6.15536 7.5595236,6.4621954 0 0 1 -7.97766,0.0938 7.5595236,6.4621954 0 0 1 -3.632922,-6.07221"
+                id="mouth"
+                style="fill:#1a1a1a;fill-opacity:1;stroke:none;stroke-width:2.21898365;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+
+            </g>
+
+            <circle r="3" cy="147.15625" cx="89.858925" id="circle874"
+              style="fill:#f2f2f2;fill-opacity:1;stroke:none;stroke-width:4.54562664;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;filter:url(#filter886)" />
+
+            <circle
+              style="fill:#f2f2f2;fill-opacity:1;stroke:none;stroke-width:4.54562664;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;filter:url(#filter898)"
+              id="circle876" cx="118.43394" cy="147.15625" r="3" />
+
+            <g id="headphone">
+
+              <g transform="matrix(1.6233844,0,0,1.5631487,66.648173,-31.206912)" id="g908">
+
+                <rect
+                  style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.11733651;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+                  id="rect902" width="2.2678571" height="10.583337" x="7.3705359" y="105.89524" ry="1.7477072" />
+
+                <rect ry="0.99869013" y="108.16309" x="-7.8997025" height="6.0476227" width="1.2095245" id="rect904"
+                  style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.61682862;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+                  transform="scale(-1,1)" />
+
+              </g>
+
+              <g id="g914" transform="matrix(-1.6233844,0,0,-1.5631487,141.31,316.39643)">
+
+                <rect ry="1.7477072" y="105.89524" x="7.3705359" height="10.583337" width="2.2678571" id="rect910"
+                  style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.11733651;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+
+                <rect transform="scale(-1,1)"
+                  style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.61682862;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+                  id="rect912" width="1.2095245" height="6.0476227" x="-7.8997025" y="108.16309" ry="0.99869013" />
+
+              </g>
+
+              <path transform="scale(1,-1)"
+                d="m 131.96952,-144.23125 a 27.883682,36.849319 0 0 1 -13.91355,32.09119 27.883682,36.849319 0 0 1 -27.986818,-0.0363 27.883682,36.849319 0 0 1 -13.865822,-32.12726"
+                id="path916"
+                style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:2.73832679;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+
+              <rect y="140.13768" x="130.47842" height="2.8487003" width="0.52629846" id="rect922"
+                style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:1.59072566;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+
+            </g>
+
+          </g>
+
+        </g>
+
+      </g>
+
+    </svg>
+
+  </div>
+
+  <!-- <audio id="music" onended="stopFunc()">
+
+        <source src="song.mp3" type="audio/mp3">
+
+    </audio> -->
+
+  <div class="container" id="container">
+
+    <div class="front" id="front">
+
+      <div class="headBox" id="headBox">
+
+        <div class="headLeft" id="headLeft" onclick="slideOpenLeftFunc()">
+
+          <i class="fa fa-bars"></i>
+
+        </div>
+
+        <div class="headRight" id="headRight" onclick="slideOpenRightFunc()">
+
+          <i class="fa fa-chevron-down"></i>
+
+        </div>
+
+      </div>
+
+      <div class="posterBox" id="posterBox">
+
+        <div class="posterBg" id="posterBg">
+
+          <div class="poster" id="poster">
+
+            <img src="" alt="" id="songBg">
+
+            <div class="asdf" id="asdf">
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="detailsBox" id="detailsBox">
+
+        <div class="songName" id="songName">
+
+
+
+        </div>
+
+        <div class="singer" id="singer">
+
+        </div>
+
+      </div>
+
+      <div class="controlBox" id="controlBox">
+
+        <div class="control" id="control">
+
+          <div class="previous" id="previous" onclick="previousFunc()">
+
+            <i class="fa fa-chevron-left"></i>
+
+          </div>
+
+          <div class="play" id="play" onclick="playFunc()">
+
+            <i class="fa fa-play"></i>
+
+          </div>
+
+          <div class="next" id="next" onclick="nextFunc()">
+
+            <i class="fa fa-chevron-right"></i>
+
+          </div>
+
+        </div>
+
+        <div class="slider" id="slider">
+
+          <div class="stick" id="stick">
+
+            <span class="ball" id="ball"></span>
+
+          </div>
+
+        </div>
+
+        <div class="extraControl" id="extraControl">
+
+          <div class="suffle" id="suffle" onclick="suffleFunc()">
+
+            <i class="fa fa-random"></i>
+
+          </div>
+
+          <div class="sound" id="sound" onclick="soundFunc()">
+
+            <i class="fa fa-volume-up"></i>
+
+          </div>
+
+          <div class="share" id="share" onclick="slideOpenDownFunc()">
+
+            <i class="fa fa-share-alt"></i>
+
+          </div>
+
+          <div class="heart" id="heart" onclick="heartFunc()">
+
+            <i class="fa fa-heart"></i>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="navBarLeft" id="navBarLeft">
+
+      <i class="fa fa-close" id="slideCloseLeft" onclick="slideCloseLeftFunc()"></i>
+
+
+
+      <div class="navLeftBox" id="navLeftBox">
+
+        <div class="navLeftBoxList" id="night" onclick="nightFunc()">
+
+          <div class="leftLogo">
+
+            <i class="fa fa-moon-o"></i>
+
+          </div>
+
+          <div class="leftText">
+
+            Night Mode <sub id="nt">ON</sub>
+
+          </div>
+
+        </div>
+
+        <div class="navLeftBoxList" id="developer" onclick="updateFunc()">
+
+          <div class="leftLogo">
+
+            <i class="fa fa-refresh"></i>
+
+          </div>
+
+          <div class="leftText">
+
+            Check for updates
+
+          </div>
+
+        </div>
+
+        <div class="navLeftBoxList" id="developer" onclick="devFunc()">
+
+          <div class="leftLogo">
+
+            <i class="fa fa-user-circle-o"></i>
+
+          </div>
+
+          <div class="leftText">
+
+            About Developer
+
+          </div>
+
+        </div>
+
+        <div class="navLeftBoxList" id="settings" onclick="settingsFunc()">
+
+          <div class="leftLogo">
+
+            <i class="fa fa-cog"></i>
+
+          </div>
+
+          <div class="leftText">
+
+            Settings
+
+          </div>
+
+        </div>
+
+        <div class="navLeftBoxList" id="signOut" onclick="signOutFunc()">
+
+          <div class="leftLogo">
+
+            <i class="fa fa-sign-out"></i>
+
+          </div>
+
+          <div class="leftText">
+
+            Sign Out
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="copyright" id="copyright">
+
+        Made With <i class="fa fa-heart"></i><br>By SuDeep Jaiswal<sup>&copy;</sup>
+
+      </div>
+
+    </div>
+
+    <div class="navBarRight" id="navBarRight">
+
+      <i class="fa fa-close" id="slideCloseRight" onclick="slideCloseRightFunc()"></i>
+
+      <div class="navRightBox" id="navRightBox">
+
+        <div class="navRightBoxList" id="navRightBoxList">
+
+          Love Me Like You Do
+
+        </div>
+
+        <div class="navRightBoxList" id="navRightBoxList">
+
+          Let Me Down Slowly
+
+        </div>
+
+        <div class="navRightBoxList" id="navRightBoxList">
+
+          Invisible
+
+        </div>
+
+        <div class="navRightBoxList" id="navRightBoxList">
+
+          Something Just Like This
+
+        </div>
+
+        <div class="navRightBoxList" id="navRightBoxList">
+
+          Keep It. Mello
+
+        </div>
+
+        <div class="navRightBoxList" id="navRightBoxList">
+
+          Alone Pt II
+
+        </div>
+
+        <div class="navRightBoxList" id="navRightBoxList">
+
+          Faded
+
+        </div>
+
+        <div class="navRightBoxList" id="navRightBoxList">
+
+          Wolves
+
+        </div>
+
+        <div class="navRightBoxList" id="navRightBoxList">
+
+          Despacito
+
+        </div>
+        <!-- ! MODIFIED -->
+
+        <input type="file" accept="*.mp3,*.mp4" name="file" id="file" style="display: none;">
+        <label for="file">
+          <div class="navRightBoxList" id="navRightBoxList" style="background: rgb(0, 128, 255);color:#fff">
+
+            Your Custom Song <i class="fa fa-headphones"></i>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <small> WORKS ON WEB</small>
+
+          </div>
+        </label>
+      </div>
+
+      <div class="tempText" id="tempText">
+
+        Made With <i class="fa fa-heart"></i><br>By SuDeep Jaiswal<sup>&copy;</sup>
+
+      </div>
+
+    </div>
+
+    <div class="navBarDown" id="navBarDown">
+
+      <i class="fa fa-close" id="slideCloseDown" onclick="slideCloseDownFunc()"></i>
+
+      <div class="shareWrapper" id="shareWrapper">
+
+        <div class="shareList" id="bluetooth" onclick="bluetoothFunc()">
+
+          <i class="fa fa-bluetooth"></i>
+
+          <span>Bluetooth</span>
+
+        </div>
+
+        <div class="shareList" data-js="facebook-share" id="fb" onclick="fbFunc()">
+
+          <i class="fa fa-facebook"></i>
+
+          <span>Facebook</span>
+
+        </div>
+
+        <div class="shareList" data-js="twitter-share" id="twitter" onclick="twitterFunc()">
+
+          <i class="fa fa-twitter"></i>
+
+          <span>Twitter</span>
+
+        </div>
+
+        <div class="shareList" id="wp" onclick="wpFunc()">
+
+          <i class="fa fa-whatsapp"></i>
+
+          <span>Whatsapp</span>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="noti" id="noti">
+
+
+
+    </div>
+
+
+    <!-- ! MODIFICATION -->
+    <div class="bars" id="bars">
+
+      <span></span>
+
+      <span></span>
+
+      <span></span>
+
+      <span></span>
+
+      <span></span>
+
+      <span></span>
+
+      <span></span>
+
+      <span></span>
+
+      <span></span>
+
+      <span></span>
+
+      <span></span>
+
+      <span></span>
+
+      <span></span>
+
+      <span></span>
+
+      <span></span>
+
+      <span></span>
+
+      <span></span>
+
+    </div>
+
+  </div>
+
+  <script>
+
+
+"use strict";
+
+var corsUrl='https://cors-anywhere.herokuapp.com/';
+
+function slideOpenLeftFunc() {
+
+  navBarLeft.style.transform = "translateX(0%)";
+
+  front.style.background = "linear-gradient(rgba(70,70,70,0.2), rgba(70,70,70,0.2))";
+
+  slideCloseLeft.style.transform = "rotate(0deg)";
+
+  headLeft.style.transform = "rotate(360deg)";
+
+  navBarRight.style.width = "0%";
+
+  navBarDown.style.height = "0%";
+
+  tempText.style.display = "none";
+
+}
+
+function slideCloseLeftFunc() {
+
+  navBarLeft.style.transform = "translateX(-100%)";
+
+  front.style.background= "linear-gradient(to bottom, #2b2b52, #218f76)";
+
+  slideCloseLeft.style.transform = "rotate(360deg)";
+
+  headLeft.style.transform = "rotate(0deg)";
+
+}
+
+function slideOpenRightFunc() {
+
+  navBarRight.style.width = "70%";
+
+  front.style.background = "linear-gradient(rgba(70,70,70,0.2), rgba(70,70,70,0.2))";
+
+  slideCloseRight.style.transform = "rotate(0deg)";
+
+  headRight.style.transform = "rotate(360deg)";
+
+  navBarLeft.style.transform = "translateX(-100%)";
+
+  navBarDown.style.height = "0%";
+
+  tempText.style.display = "block";
+
+}
+
+function slideCloseRightFunc() {
+
+  navBarRight.style.width = "0%";
+
+  front.style.background = "linear-gradient(to bottom, #2b2b52, #218f76)";
+
+  slideCloseRight.style.transform = "rotate(360deg)";
+
+  headRight.style.transform = "rotate(0deg)";
+
+  tempText.style.display = "none";
+
+}
+
+function slideOpenDownFunc() {
+
+  navBarDown.style.height = "25%";
+
+  front.style.background = "linear-gradient(rgba(70,70,70,0.2), rgba(70,70,70,0.2))";
+
+  slideCloseDown.style.transform = "rotate(0deg)";
+
+  share.style.transform = "rotate(360deg)";
+
+  navBarLeft.style.transform = "translateX(-100%)";
+
+  navBarRight.style.width ="0%";
+
+  // shareList.style.display = "flex";
+
+  noti.style.animation = "none";
+
+}
+
+function slideCloseDownFunc() {
+
+  navBarDown.style.height = "0%";
+
+  front.style.background = "linear-gradient(to bottom, #2b2b52, #218f76)";
+
+  slideCloseDown.style.transform = "rotate(360deg)";
+
+  share.style.transform = "rotate(0deg)";
+
+  // shareList.style.display = "none";
+
+}
+
+var i = 0;
+
+function suffleFunc() {
+
+  if(i===0) {
+
+    suffle.style.background="rgba(0,0,0,0.5)";
+
+    suffle.style.transform="scale(1.04)";
+
+    noti.style.animation = "noti 1500ms ease-out forwards";
+
+    noti.textContent = "Suffle on.";
+
+    i=1;
+
+  } else {
+
+    suffle.style.background="transparent";
+
+    suffle.style.transform="scale(1)";
+
+    noti.style.animation = "none";
+
+    i=0;
+
+  }
+
+}
+
+function soundFunc() {
+
+  if(i===0) {
+
+    sound.innerHTML = "<i class=\"fa fa-volume-off\"></i>";
+
+    noti.style.animation = "noti 1500ms ease-out forwards";
+
+    noti.textContent = "Muted.";
+
+    playSong.muted = true;
+
+    i = 1;
+
+  } else {
+
+    sound.innerHTML = "<i class=\"fa fa-volume-up\"></i>";
+
+    noti.style.animation = "none";
+
+    playSong.muted = false;
+
+    i=0;
+
+  }
+
+}
+
+function heartFunc() {
+
+  if(i===0) {
+
+    heart.style.color = "#e31b23";
+
+    heart.style.transform = "scale(1.1)";
+
+    noti.style.animation = "noti 1500ms ease-out forwards";
+
+    noti.textContent = "Added to favorites.";
+
+    i=1;
+
+  } else {
+
+    heart.style.color = "beige";
+
+    heart.style.transform = "scale(1)";
+
+    noti.style.animation = "none";
+
+    i=0;
+
+  }
+
+}
+
+function bluetoothFunc() {
+
+  if (i===0) {
+
+    noti.style.animation = "noti 1500ms ease-out forwards";
+
+    noti.textContent = "Bluetooth Device is not found.";
+
+    i=1;
+
+  } else {
+
+    noti.style.animation = "none";
+
+    i=0;
+
+  }
+
+}
+
+function nightFunc() {
+
+  if (i===0) {
+
+    container.style.color = "#00151f";
+
+    navBarLeft.style.background = "#00151f";
+
+    navBarRight.style.background = "#00151f";
+
+    navBarDown.style.background = "#00151f";
+
+    stick.style.background = "#00151f";
+
+    ball.style.background = "#00151f";
+
+    play.style.border = "0.5vh solid #00151f";
+
+    slideCloseLeft.style.color = "beige";
+
+    slideCloseRight.style.color = "beige";
+
+    slideCloseDown.style.color = "beige";
+
+    copyright.style.color = "beige";
+
+    shareWrapper.style.color = "beige";
+
+    navLeftBox.style.color = "beige";
+
+    navRightBox.style.color = "beige";
+
+    tempText.style.color = "beige";
+
+    nt.textContent = "OFF";
+
+    i=1;
+
+  } else {
+
+    container.style.color = "beige";
+
+    navBarLeft.style.background = "aliceblue";
+
+    navBarRight.style.background = "aliceblue";
+
+    navBarDown.style.background = "aliceblue";
+
+    stick.style.background = "beige";
+
+    ball.style.background = "beige";
+
+    play.style.border = "0.5vh solid beige";
+
+    slideCloseLeft.style.color = "#494949";
+
+    slideCloseRight.style.color = "#494949";
+
+    slideCloseDown.style.color = "#494949";
+
+    copyright.style.color = "#494949";
+
+    shareWrapper.style.color = "#494949";
+
+    navLeftBox.style.color = "#494949";
+
+    navRightBox.style.color = "#494949";
+
+    tempText.style.color = "494949";
+
+    nt.textContent = "ON";
+
+    i=0;
+
+  }
+
+}
+
+function devFunc(){
+
+    window.open("https://code.sololearn.com/Wkb2x5T25qKp/?ref=app");
+
+}
+
+function settingsFunc() {
+
+  if (i===0) {
+
+    noti.style.animation = "noti 1500ms ease-out forwards";
+
+    noti.textContent = "Sorry, Setting page is not available.";
+
+    i=1;
+
+  } else {
+
+    noti.style.animation = "none";
+
+    i=0;
+
+  }
+
+}
+
+function updateFunc() {
+
+  if (i===0) {
+
+    noti.style.animation = "noti 1500ms ease-out forwards";
+
+    noti.textContent = "The Letest Version.";
+
+    i=1;
+
+  } else {
+
+    noti.style.animation = "none";
+
+    i=0;
+
+  }
+
+}
+
+function signOutFunc() {
+
+  container.style.transform = "translate(0%,100%)";
+
+  loader.style.transform = "translate(0%,0%)";
+
+  container.style.display = "none";
+
+  loader.style.display = "flex";
+
+  playSong.pause();
+
+  playSong.currentTime = 0
+
+  poster.style.animation = "none";
+
+  play.innerHTML = "<i class=\"fa fa-play\"></i>";
+
+  suffle.style.background="transparent";
+
+  suffle.style.transform="scale(1)";
+
+  heart.style.color = "beige";
+
+  heart.style.transform = "scale(1)";
+
+  noti.style.animation = "none";
+
+  playSong.muted = false;
+
+  sound.innerHTML = "<i class=\"fa fa-volume-up\"></i>";
+
+  poster.style.animation = "none";
+
+  bars.style.opacity = "0";
+
+}
+
+function enterFunc() {
+
+  container.style.transform = "translate(0%,0%)";
+
+  loader.style.transform = "translate(0%,100%)";
+
+  container.style.display = "flex";
+
+  loader.style.display = "none";
+
+  loader.style.display = "none";
+
+  navBarLeft.style.transform = "translateX(-100%)";
+
+}
+
+var x;
+
+var album = [
+
+        {
+
+          id: 1,
+
+          songName: "Love Me Like You Do",
+
+          singer: "Ellie Goulding",
+
+          link: "Love Me Down Slowly.mp3",
+          poster: "https://m.media-amazon.com/images/I/81UB92vF69L._SS500_.jpg"
+        },
+
+        {
+
+          id: 2,
+
+          songName: "Let Me Down Slowly",
+
+          singer: "Alec Benjamin",
+
+          link: "Let Me Down Slowly.mp3",
+
+          poster: "https://m.media-amazon.com/images/I/71jf5zKc64L._SS500_.jpg"
+
+        },
+
+        {
+
+          id: 3,
+
+          songName: "Invisible",
+
+          singer: "Linkin Park",
+
+          link: "Invisible.mp3",
+
+          poster: "https://m.media-amazon.com/images/I/71UwlcRrnUL._SS500_.jpg"
+
+        },
+
+        {
+
+          id: 4,
+
+          songName: "Something Just Like This",
+
+          singer: "Coldplay, The Chainsmokers",
+
+          link: "Something Just Like This.mp3",
+
+          poster: "https://m.media-amazon.com/images/I/71Wf4CZuWhL._SS500_.jpg"
+
+        },
+
+        {
+
+          id: 5,
+
+          songName: "Keep it Mello",
+
+          singer: "Marshmello, Omar Linx",
+
+          link: "Keep it mello.mp3",
+
+          poster: "https://m.media-amazon.com/images/I/81upColJExL._SS500_.jpg"
+
+        },
+
+        {
+
+          id: 6,
+
+          songName: "Alone Pt.II",
+
+          singer: "Alan Walker, Ava Max",
+
+          link: "Alone Pt. II.mp3",
+
+          poster: "https://m.media-amazon.com/images/I/71yee79JvaL._SS500_.jpg"
+
+        },
+
+        {
+
+          id: 7,
+
+          songName: "Faded",
+
+          singer: "Alan Waker",
+
+          link: "Faded.mp3",
+
+          poster: "https://m.media-amazon.com/images/I/81PND-8S+iL._SS500_.jpg"
+
+        },
+
+        {
+
+          id: 8,
+
+          songName: "Wolves",
+
+          singer: "Marshmello, Selena Gomez",
+
+          link: "Wolves.mp3",
+
+          poster: "https://m.media-amazon.com/images/I/81l9pggRjTL._SS500_.jpg"
+
+        },
+
+];
+
+var songIndex = 0;
+
+var playSong = new Audio();
+
+window.onload = () => {
+
+    songName.textContent = album[songIndex].songName;
+
+    singer.textContent = album[songIndex].singer;
+
+    songBg.src = album[songIndex].poster;
+
+    enter.innerHTML = "Tap Me <br><small style='font-size:0.5rem'>* Headphone are highly recommended <br> please wait while music loads</small>";
+
+    enter.style.animation = "none";
+
+    enter.style.color = "#00151f";
+
+    loader.style.transform = "translate(0%,0%)";
+
+    visualizer();
+};
+
+
+var custom=0;
+
+
+var playFunc = () =>{
+
+    if(playSong.paused){
+
+        if(!custom){
+          playSong.src = corsUrl+album[songIndex].link;
+        }
+
+        playSong.play();
+
+
+
+
+        play.innerHTML = "<i class=\"fa fa-pause\"></i>";
+
+        poster.style.animation = "rotation 8s linear infinite";
+
+        // ball.style.animation = "ball 250s linear forwards";
+
+        navBarDown.style.height = "0%";
+
+        bars.style.opacity = "1";
+
+    }
+
+    else{
+
+        playSong.pause();
+
+
+        play.innerHTML = "<i class=\"fa fa-play\"></i>";
+
+        poster.style.animationPlayState = "paused";
+
+        // ball.style.animationPlayState = "paused";
+
+        navBarDown.style.height = "0%";
+
+        bars.style.opacity = "0";
+
+    }
+
+    if(!custom){
+
+      songName.textContent = album[songIndex].songName;
+
+      singer.textContent = album[songIndex].singer;
+
+      songBg.src = album[songIndex].poster;
+
+
+    }
+
+    custom=0;
+};
+
+x = album.length;
+
+var nextFunc = () => {
+
+    if(!playSong.paused){
+
+        playSong.pause();
+
+        // ball.style.animation = "none";
+
+        }
+
+    if(custom == 0 && songIndex < x-1){
+
+        songIndex++;
+
+    }
+
+    else{
+
+        songIndex = 0;
+
+    }
+
+    playFunc();
+
+};
+
+var previousFunc = () => {
+
+    if(!playSong.paused){
+
+        playSong.pause();
+
+        // ball.style.animation = "none";
+
+        }
+
+    if(custom == 0 && songIndex > 0){
+        songIndex--;
+
+    }
+
+    playFunc();
+
+};
+
+
+
+function fbFunc() {
+
+  if (i===0) {
+
+    window.open('https://www.facebook.com/sharer/sharer.php?u=https://code.sololearn.com/W5N54r81R5oW/?ref=app' );
+
+    noti.style.animation = "noti 1500ms ease-out forwards";
+
+    noti.textContent = "Shared to Facebook.";
+
+    i=1;
+
+  } else {
+
+    noti.style.animation = "none";
+
+    i=0;
+
+  }
+
+}
+
+function twitterFunc() {
+
+  if (i===0) {
+
+    window.open('https://twitter.com/share?url=Check out what SuDeep Jaiswal has created on Sololearn.... https://code.sololearn.com/W5N54r81R5oW/?ref=app');
+
+    noti.style.animation = "noti 1500ms ease-out forwards";
+
+    noti.textContent = "Shared to Twitter.";
+
+    i=1;
+
+  } else {
+
+    noti.style.animation = "none";
+
+    i=0;
+
+  }
+
+}
+
+function wpFunc() {
+
+  if (i===0) {
+
+    window.location = ("https://api.whatsapp.com/send?&text=Check out what SuDeep Jaiswal has created on Sololearn..... https://code.sololearn.com/W5N54r81R5oW/?ref=app" );
+
+    noti.style.animation = "noti 1500ms ease-out forwards";
+
+    noti.textContent = "Shared to Whatsapp.";
+
+    i=1;
+
+  } else {
+
+    noti.style.animation = "none";
+
+    i=0;
+
+  }
+
+}
+
+
+
+
+   //////////////////////////
+  /// MODIFICATIONS AHEAD //
+ //////////////////////////
+
+
+
+
+
+
+
+  playSong.crossOrigin="Anonymous";
+  function $(el){  return document.getElementById(el); }
+  function _(el){  return document.querySelector(el); }
+
+  var stream;
+  var audioCtx=new AudioContext();
+  var analyser=audioCtx.createAnalyser();
+
+
+
+
+
+  function visualizer(){
+
+
+
+    stream=audioCtx.createMediaElementSource(playSong);
+
+    stream.connect(analyser);
+    analyser.connect(audioCtx.destination);
+
+    setInterval(looper,100);
+
+  }
+
+
+
+  var sj_bars=$("bars");
+  var _chld=sj_bars.children;
+
+  function looper(){
+
+    var arr=new Uint8Array(analyser.frequencyBinCount);
+
+    analyser.getByteFrequencyData(arr);
+
+      for(var _i=0;_i<_chld.length;_i++){
+
+        var _w=arr[_i];
+        var _el=_chld[_i];
+
+
+        if(_w< 250){
+          // _el.style.background ="rgb("+(~arr[i])+","+(arr[i]/2)+",150)";
+          _el.style.width =_w  +"px" ;
+
+        } else {
+          _el.style.width = 250  +"px" ;
+
+        }
+        // console.log(_el.style.width);
+      }
+
+      $("stick").style.background='rgb('+(225-(arr[10]*0.5))+','+(225-(arr[13]*0.5))+','+(225-(arr[16]*0.5))+')';
+
+  }
+
+
+  playSong.onended=function(){
+    nextFunc();
+  }
+
+  playSong.ontimeupdate=function(){
+    $("ball").style.left= ((playSong.currentTime/playSong.duration)*100) +"%";
+  }
+
+  file.onchange=function(e){
+
+    custom=1;
+
+    var _src=URL.createObjectURL(file.files[0]);
+    $("songName").innerHTML=file.files[0].name;
+
+    //////////////////////////////
+      playSong.src=corsURL+_src;////////
+    //////////////////////////////
+
+    playFunc();
+    slideCloseRightFunc();
+  }
+
+
+
+
+  $("stick").onclick=function(e){
+
+    var _x= ((e.clientX - $("stick").offsetLeft) / ( $("stick").offsetWidth)) * playSong.duration  ;
+    if(!isNaN(_x)){
+         playSong.currentTime=Math.floor(_x);
+      }
+  }
+
+  </script>
+
+</body>
+
+</html>
